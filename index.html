@@ -34,13 +34,8 @@
                 <li class="dropdown open">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true"><span class="glyphicon glyphicon-filter" aria-hidden="true"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li class="dropdown-header">Nav header</li>
-                        <li><a href="#">Separated link</a></li>
-                        <li><a href="#">One more separated link</a></li>
+                        <li><a href=""#>Art</a></li>
+                        <li><a href=""#>Food</a></li>
                     </ul>
                 </li>
             </ul>
@@ -52,7 +47,6 @@
     </div>
 </nav>
 
-sheen {{sheen}}
 
 <div id="left">
     LEft
@@ -74,34 +68,32 @@ sheen {{sheen}}
                 <form>
                     <div class="form-group">
                         <label for="category" class="control-label">Category:</label>
-                        <select class="form-control" id="category">
+                        <select class="form-control" id="category" ng-model = "user.category">
                             <option>Art</option>
                             <option>Food</option>
-                            <option>Craft</option>
-                            <option>blah blah</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="user" class="control-label">User Name:</label>
-                        <input type="text" class="form-control" id="user">
+                        <input type="text" class="form-control" id="user" ng-model = "user.username">
                     </div>
                     <div class="form-group">
                         <label for="email" class="control-label">Email:</label>
-                        <input type="text" class="form-control" id="email">
+                        <input type="text" class="form-control" id="email" ng-model = "user.email">
                     </div>
                     <div class="form-group">
                         <label for="message-text" class="control-label">Description:</label>
-                        <textarea class="form-control" id="message-text"></textarea>
+                        <textarea class="form-control" id="message-text" ng-model = "user.decription"></textarea>
                     </div>
                     <div class="form-group">
                         <label for="content" class="control-label">Content:</label>
-                        <textarea class="form-control" id="content"></textarea>
+                        <textarea class="form-control" id="content" ng-model = "user.content"></textarea>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save</button>
+                <button type="button" class="btn btn-primary" ng-click="addItem(user)">Save</button>
             </div>
         </div>
     </div>
