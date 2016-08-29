@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('app', ['ngMessages','ui.bootstrap'])
+angular.module('app', ['ngMessages'])
     .run(['$rootScope', "$interval", function($rootScope, $interval) {
 
     }])
