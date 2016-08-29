@@ -48,15 +48,17 @@
     </nav>
 
     <div class="container">
-        <div class="card flex-column">
-            <div class="wrapper" id="hd1">
-            </div>
-            <div class="content">
-                <div class="content-header flex-row">
-                    <h2 class="title">Alaskan Reindeer</h2>
-                    <span>12 <i class="fa fa-comment fa-lg fa-fw" aria-hidden="true"></i></span>
+        <div ng-repeat="item in artifacts">
+            <div class="card flex-column">
+                <div class="wrapper" id="hd1">
                 </div>
-                <p class="description">Smoky, juicy and delicious. So good we flew it all the way from Alaska!</p>
+                <div class="content">
+                    <div class="content-header flex-row">
+                        <h2 class="title">{{item.title}}</h2>
+                        <span>12 <i class="fa fa-comment fa-lg fa-fw" aria-hidden="true"></i></span>
+                    </div>
+                    <p class="description">{{item.description}}</p>
+                </div>
             </div>
         </div>
     </div>
