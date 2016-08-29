@@ -1,0 +1,38 @@
+{
+    "artifacts": [
+        {
+            "category": "Art",
+            "title": "Stink flowers in my garden",
+            "description": "It is really stinky.",
+            "creator": "Skip",
+            "content": "stinkFlower.jpg",
+            "comments" :[
+                {
+                    "user": "Tadimeti",
+                    "comment": "awesome"
+                },
+                {
+                    "user": "Skip",
+                    "comment": "copy cat"
+                }
+            ]
+        },
+        {
+            "category": "Food",
+            "title": "Stink tofu in my kitchen",
+            "description": "It is really stinky.",
+            "creator": "Kathy",
+            "content": "stinkTofu.jpg",
+            "comments" :[
+                {
+                    "user": "Shree",
+                    "comment": "awesome"
+                },
+                {
+                    "user": "Skip",
+                    "comment": "Taste awesome"
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,21 @@
+{
+    "users": [
+        {
+            "name": "Skip",
+            "email": "skip.hanson@emc.com"
+        },
+        {
+            "name": "Sheen",
+            "email": "sheen.joseph@emc.com"
+        },
+        {
+            "name": "Kathy",
+            "email": "kathy.laird@emc.com",
+        },
+        {
+            "name": "RickK",
+            "email": "richard.kowaleski@emc.com"
+        }
+    ]
+}
+
