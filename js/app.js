@@ -7,8 +7,8 @@ angular.module('app', ['ngMessages','ui.bootstrap'])
 
     .controller('mainCtrl', ['$scope', '$http', '$rootScope', '$interval', function ($scope, $http, $rootScope, $interval) {
         $scope.artifacts = [];
-        $scope.users = [];
-
+        $scope.user = { };
+        console.log('Inside Controller');
 
         $scope.notifyUsers = function() {
             console.log('notifyUsers');
@@ -21,6 +21,7 @@ angular.module('app', ['ngMessages','ui.bootstrap'])
         $scope.init = function () {
             // load users from db
             // load contents from db
+            $scope.user = { };
         };
         $scope.init();
     }]);

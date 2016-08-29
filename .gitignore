@@ -1,6 +1,7 @@
 .idea/
 node_modules/
+bower_components/
 *.codekit
 *.scssc
 js/min/
-dump/
+dump/git
