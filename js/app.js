@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('app', ['ngMessages'])
+angular.module('app', ['ngMessages','ui.bootstrap'])
     .run(['$rootScope', "$interval", function($rootScope, $interval) {
 
     }])
@@ -31,4 +31,4 @@ angular.module('app', ['ngMessages'])
             $scope.getData('artifacts');
         };
         $scope.init();
-    }])
+    }]);
