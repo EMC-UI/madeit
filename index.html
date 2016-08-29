@@ -16,6 +16,7 @@
 
 <body ng-controller="mainCtrl" ng-app="app">
 
+<<<<<<< HEAD
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -27,6 +28,11 @@
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="#">Made It</a>
+=======
+        <div id="left">
+            <h2>Users</h2>
+            <div ng-repeat="user in users">{{user.name}}</div>
+>>>>>>> 780ec37b7c22c78f871e64ec088eb141998f4bc3
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
@@ -45,9 +51,15 @@
                 </li>
             </ul>
 
+<<<<<<< HEAD
             <form class="navbar-form navbar-right">
                 <input type="text" ng-model="searchText" class="form-control" placeholder="Search...">
             </form>
+=======
+        <div id="right">
+            <h2>Artifacts</h2>
+            <div ng-repeat="item in artifacts">{{item.title}}</div>
+>>>>>>> 780ec37b7c22c78f871e64ec088eb141998f4bc3
         </div>
     </div>
 </nav>
