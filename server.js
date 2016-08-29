@@ -1,4 +1,8 @@
+
+
 var express = require('express');
+var mongoAccess = require('./mongo_access');
+
 // var tally = require('tally');
 var app = express();
 var url = require('url');
@@ -19,6 +23,15 @@ app.get('/madeit/artifacts', function (req, res) {
     //     res.json(result);
     // });
     res.json(artifactsMock);
+});
+
+app.post('/madeit/artifact', function (req, res) {
+    console.log("POST artifact");
+    // var urlParts = url.parse(req.url, true);
+    // tally.projectStats(urlParts.query.prevDays).then(function(result) {
+    //     res.json(result);
+    // });
+    // res.json(artifactsMock);
 });
 
 // app.get('/create', function(req, res) {
