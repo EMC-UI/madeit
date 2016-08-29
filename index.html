@@ -11,14 +11,18 @@
 
     <body ng-controller="mainCtrl" ng-app="app">
 
-        <div id="left">
-            <h2>Users</h2>
-            <div ng-repeat="user in users">{{user.name}}</div>
-        </div>
-
-        <div id="right">
-            <h2>Artifacts</h2>
-            <div ng-repeat="item in artifacts">{{item.title}}</div>
-        </div>
+      <div class="container">
+        <div class="card flex-column">
+            <div class="wrapper" id="hd1">
+            </div>
+            <div class="content">
+              <div class="content-header flex-row">
+                <h2 class="title">Alaskan Reindeer</h2>
+                <span>12 <i class="fa fa-comment fa-lg fa-fw" aria-hidden="true"></i></span>
+              </div>
+              <p class="discription">Smoky, juicy and delicious. So good we flew it all the way from Alaska!</p>
+            </div>
+          </div>
+      </div>
     </body>
 </html>
