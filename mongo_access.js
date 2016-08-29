@@ -7,12 +7,12 @@ var MongoDataAccess = function () {
     var bucketName = 'media_bucket'
     var defaultDBConnection = `mongodb://128.222.174.194/${dbName}`;
 
-    let mongoClient = mongodb.MongoClient;
-    let port = process.env.PORT || 5000;
-    let dbURI = process.env.MONGODB_URI || defaultDBConnection;
-    let db;
+    var mongoClient = mongodb.MongoClient;
+    var port = process.env.PORT || 5000;
+    var dbURI = process.env.MONGODB_URI || defaultDBConnection;
+    var db;
 
-    this.writeFileToMongo = function (filePath) {
+    this.writeFivaroMongo = function (filePath) {
         mongoClient.connect(dbURI).then(ddb => {
             console.log('connected to mongo');
         db = ddb;
