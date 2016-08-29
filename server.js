@@ -2,32 +2,24 @@ var express = require('express');
 // var tally = require('tally');
 var app = express();
 var url = require('url');
-var userStatsMock = require('./mock/userStats.json');
-var projectStatsMock = require('./mock/projectStats.json');
+var usersMock = require('./mock/users.json');
+var artifactsMock = require('./mock/artifacts.json');
 
 app.get('/madeit/users', function (req, res) {
     // var urlParts = url.parse(req.url, true);
     // tally.userStats(urlParts.query.prevDays).then(function(result) {
     //     res.json(result);
     // });
-    res.json(userStatsMock);
+    res.json(usersMock);
 });
 
-app.get('/madeit/contents', function (req, res) {
+app.get('/madeit/artifacts', function (req, res) {
     // var urlParts = url.parse(req.url, true);
     // tally.projectStats(urlParts.query.prevDays).then(function(result) {
     //     res.json(result);
     // });
-    res.json(projectStatsMock);
+    res.json(artifactsMock);
 });
-
-// app.get('/stats/repoStats', function (req, res) {
-//     //var urlParts = url.parse(req.url, true);
-//     //tally.repoStats(urlParts.query.prevDays).then(function(result) {
-//     //    res.json(result);
-//     //});
-//     res.json({});
-// });
 
 // app.get('/create', function(req, res) {
 //     tally.createData(30);
@@ -35,7 +27,7 @@ app.get('/madeit/contents', function (req, res) {
 // });
 
 app.listen(3000, function () {
-    console.log('Example app listening on port 3000!');
+    console.log('MADEIT app listening on port 3000!');
 });
 
 app.use(express.static('.'));
