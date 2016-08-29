@@ -44,4 +44,3 @@ app.listen(3000, function () {
 });
 
 app.use(express.static('.'));
-app.use(express.static('./assets'));
