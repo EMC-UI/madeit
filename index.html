@@ -12,11 +12,13 @@
     <body ng-controller="mainCtrl" ng-app="app">
 
         <div id="left">
-            LEft
+            <h2>Users</h2>
+            <div ng-repeat="user in users">{{user.name}}</div>
         </div>
 
         <div id="right">
-            Right
+            <h2>Artifacts</h2>
+            <div ng-repeat="item in artifacts">{{item.title}}</div>
         </div>
     </body>
 </html>
