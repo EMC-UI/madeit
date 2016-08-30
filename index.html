@@ -33,11 +33,9 @@
                         <span class="fa fa-cubes fa-lg fa-fw"></span>
                     </a></li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true"
-                            ng-click="filterArtifact('Art')">
-                            <span class="fa fa-filter fa-lg fa-fw"></span>
-                        </a>
-                        <ul class="dropdown-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="true"><span class="glyphicon glyphicon-filter" aria-hidden="true"></span></a>
+                        <ul class="dropdown-menu"  dd-menu value="ddValue">
                             <li><a href="" #>Art</a></li>
                             <li><a href="" #>Food</a></li>
                         </ul>
@@ -59,10 +57,9 @@
             </div>
         </div>
     </nav>
-
     <div class="row">
         <div class="container-fluid">
-            <div  class="col-lg-3" ng-repeat="item in artifacts | filter:ddValue | filter: search">
+            <div  class="col-lg-3" ng-repeat="item in artifacts | filter:ddValue | filter: query">
                 <div class="card flex-column">
                     <div class="wrapper" style="background: url('{{item.imageUrl == null ? 'http://softstribe.com/wp-content/uploads/2016/01/How-to-Remote-Upload-Files-in-WordPress.gif': item.imageUrl}}') center/cover no-repeat;">
                     </div>
