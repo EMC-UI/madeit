@@ -5,7 +5,7 @@
             "title": "Stink flowers in my garden",
             "description": "It is really stinky.",
             "creator": "Skip",
-            "content": "stinkFlower.jpg",
+            "asset": "stinkFlower.jpg",
             "comments" :[
                 {
                     "user": "Tadimeti",
@@ -22,7 +22,7 @@
             "title": "Stink tofu in my kitchen",
             "description": "It is really stinky.",
             "creator": "Kathy",
-            "content": "stinkTofu.jpg",
+            "asset": "stinkTofu.jpg",
             "comments" :[
                 {
                     "user": "Shree",
