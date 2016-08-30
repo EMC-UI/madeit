@@ -75,4 +75,3 @@ app.post('/madeit/artifacts', function (req, res) {
 app.listen(3000, function () {
     console.log('MADEIT app listening on port 3000!');
 });
-
