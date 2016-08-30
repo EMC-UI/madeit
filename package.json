@@ -1,8 +1,8 @@
 {
-  "name": "emc-stash-widget",
+  "name": "emc-madeit",
   "version": "0.0.1",
-  "author": "Dehru <dehru@yahoo.com>",
-  "description": "a simple web server that returns git / stash data",
+  "author": "hackathone",
+  "description": "A simple web server collects madeit",
   "license": "MIT",
   "engines": {
     "node": ">=0.10"
@@ -12,6 +12,10 @@
   },
   "dependencies": {
     "express": "~4.13.4",
-    "mongodb": "^2.2.9"
+    "body-parser": "~1.14.2",
+    "mongodb": "^2.2.9",
+    "promised-mongo": "^1.2.0",
+    "superagent": "^1.8.1",
+    "asyncawait": "^1.0.3"
   }
 }

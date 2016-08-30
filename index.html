@@ -28,16 +28,25 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#" data-toggle="modal" data-target="#createUser"><span
-                            class="glyphicon glyphicon-plus"></span></a></li>
-                    <li class="dropdown open">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                           aria-expanded="true"><span class="glyphicon glyphicon-filter" aria-hidden="true"></span></a>
+                    <li><a href="#" data-toggle="modal" data-target="#addContent">
+                        <span class="fa fa-cubes fa-lg fa-fw"></span>
+                    </a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true"
+                            ng-click="filterArtifact('Art')">
+                            <span class="fa fa-filter fa-lg fa-fw"></span>
+                        </a>
                         <ul class="dropdown-menu">
                             <li><a href="" #>Art</a></li>
                             <li><a href="" #>Food</a></li>
                         </ul>
                     </li>
+                    <li><a href="#" data-toggle="modal" data-target="#addUser">
+                            <span class="fa fa-user-plus fa-lg fa-fw"></span>
+                    </a></li>
+                    <li><a href="#" data-toggle="modal" data-target="#showUsers">
+                        <span class="fa fa-users fa-lg fa-fw"></span>
+                    </a></li>
                 </ul>
 
                 <form class="navbar-form navbar-right">
@@ -58,49 +67,125 @@
                         <span>12 <i class="fa fa-comment fa-lg fa-fw" aria-hidden="true"></i></span>
                     </div>
                     <p class="description">{{item.description}}</p>
+                    <p class="description">{{item.category}}</p>
+                    <p class="description">{{item.creator}}</p>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- popup box started -->
-    <div class="modal fade" id="createUser" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+    <!-- popup box for add user started -->
+    <div class="modal fade" id="addUser" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <a class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></a>
-                    <h4 class="modal-title" id="exampleModalLabel">New Content</h4>
+                    <h4 class="modal-title" id="userModal">New User</h4>
                 </div>
                 <div class="modal-body">
                     <form>
                         <div class="form-group">
-                            <label for="category" class="control-label">Category:</label>
-                            <select class="form-control" id="category" ng-model="user.category">
-                                <option>Art</option>
-                                <option>Food</option>
+                            <label for="userCategory" class="control-label">Category</label>
+                            <select class="form-control" id="userCategory" ng-model="user.category">
+                                <option>All</option>
+                                <option>Artist</option>
+                                <option>Foodie</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="user" class="control-label">User Name:</label>
-                            <input type="text" class="form-control" id="user" ng-model="user.username">
+                            <label for="userName" class="control-label">Name</label>
+                            <input type="text" class="form-control" id="userName" ng-model="user.name">
                         </div>
                         <div class="form-group">
-                            <label for="email" class="control-label">Email:</label>
-                            <input type="text" class="form-control" id="email" ng-model="user.email">
+                            <label for="userEmail" class="control-label">Email</label>
+                            <input type="text" class="form-control" id="userEmail" ng-model="user.email">
                         </div>
                         <div class="form-group">
-                            <label for="message-text" class="control-label">Description:</label>
-                            <textarea class="form-control" id="message-text" ng-model="user.decription"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="content" class="control-label">Content:</label>
-                            <textarea class="form-control" id="content" ng-model="user.content"></textarea>
+                            <label for="userDescription" class="control-label">Description</label>
+                            <textarea class="form-control" id="userDescription" ng-model="user.description"></textarea>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" ng-click="addItem(user)">Save</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="addUser(user)">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- popup box for display user started -->
+    <div class="modal fade" id="showUsers" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <a class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></a>
+                    <h4 class="modal-title" id="displayUserModal">Users</h4>
+                </div>
+                <div class="modal-body" ng-repeat="user in users">
+                        <div>
+                            <label class="control-label">Category</label> {{user.category}}
+                        </div>
+                        <div>
+                            <label for="userName" class="control-label">Name</label> {{user.name}}
+                        </div>
+                        <div>
+                            <label for="userEmail" class="control-label">Email</label> {{user.email}}
+                        </div>
+                        <div>
+                            <label for="userDescription" class="control-label">Description</label> {{user.description}}
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <!--<button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="saveUser(user)">Save</button>-->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- popup box to add new artifact started -->
+    <div class="modal fade" id="addContent" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <a class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></a>
+                    <h4 class="modal-title" id="contentModal">New Content</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="artifactCategory" class="control-label">Category</label>
+                            <select class="form-control" id="artifactCategory" ng-model="artifact.category">
+                                <option>Art</option>
+                                <option>Food</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="artifactTitle" class="control-label">Title</label>
+                            <input type="text" class="form-control" id="artifactTitle" ng-model="artifact.title">
+                        </div>
+                        <div class="form-group">
+                            <label for="artifactDescription" class="control-label">Description</label>
+                            <textarea class="form-control" id="artifactDescription" ng-model="artifact.description"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="artifactAsset" class="control-label">Asset</label>
+                            <textarea class="form-control" id="artifactAsset" ng-model="artifact.asset"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="artifactCreator" class="control-label">User Name</label>
+                            <input type="text" class="form-control" id="artifactCreator" ng-model="artifact.creator">
+                        </div>
+                        <div class="form-group">
+                            <label for="artifactComments" class="control-label">Comments</label>
+                            <textarea class="form-control" id="artifactComments" ng-model="artifact.comments"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="addArtifact(artifact)">Save</button>
                 </div>
             </div>
         </div>
