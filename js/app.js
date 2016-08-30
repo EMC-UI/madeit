@@ -12,7 +12,6 @@ angular.module('app', ['ngMessages','ui.bootstrap','ngFileUpload'])
         $scope.user = {};
 
         $scope.categoryFilter = '';
-        console.log('Inside Controller' + $scope.categoryFilter);
 
         $scope.notifyUsers = function () {
             console.log('notifyUsers');
@@ -22,13 +21,14 @@ angular.module('app', ['ngMessages','ui.bootstrap','ngFileUpload'])
             $scope.notifyUsers();
         });
         $scope.search = function (artifacts) {
-            // console.log(artifacts);
-            return !!((artifacts.description.indexOf($scope.query || '') !== -1 || artifacts.title.indexOf($scope.query || '') !== -1));
+            console.log("............"+artifacts.description);
+            if($scope.query != null){
+                return !!((artifacts.description.indexOf($scope.query || '') !== -1 || artifacts.title.indexOf($scope.query || '') !== -1));
+            }
         };
 
         $scope.filterArtifact = function (data) {
-            console.log('filterArtifact', arguments);
-            $scope.getData('artifacts', {category: 'Art'});
+            $scope.getData('artifacts', {category: data});
 
             $http.post('/madeit/email',
                 {data: {email: '7205601915@tmomail.net', msg:'test'}}).then(function(response) {
@@ -60,6 +60,12 @@ angular.module('app', ['ngMessages','ui.bootstrap','ngFileUpload'])
             $http.post('/madeit/artifacts', artifact).then(function(response) {
                 console.log('addArtifact good', response);
                 $scope.artifacts.push(artifact);
+                // artifact.category = '';
+                // artifact.description = '';
+                // artifact.title = '';
+                // artifact.asset = '';
+                // artifact.comments = '';
+                // artifact.creator = '';
             }, function(err) {
                 console.log('addArtifact err', err);
             });
@@ -88,6 +94,7 @@ angular.module('app', ['ngMessages','ui.bootstrap','ngFileUpload'])
         };
 
         $scope.init = function () {
+            $scope.ddValue = '';
             $scope.added = false;
             // load users from db
             $scope.getData('users');
@@ -104,8 +111,13 @@ angular.module('app', ['ngMessages','ui.bootstrap','ngFileUpload'])
             link: function(scope, element) {
                 // set the initial value
                 var $el = $(element);
-                scope.value = $el.find('li:first').text();
-
+                //scope.value = $el.find('li:first').text();
+                if(scope.value){
+                    scope.value = $el.find('li:first').text()
+                }
+                else{
+                    scope.value = '';
+                }
                 // listen for changes
                 $el.on('click', 'li', function() {
                     scope.value = $(this).text();
