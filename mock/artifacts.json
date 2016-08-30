@@ -5,34 +5,89 @@
             "title": "Stink flowers in my garden",
             "description": "It is really stinky.",
             "creator": "Skip",
-            "asset": "stinkFlower.jpg",
-            "comments" :[
-                {
-                    "user": "Tadimeti",
-                    "comment": "awesome"
-                },
-                {
-                    "user": "Skip",
-                    "comment": "copy cat"
-                }
-            ]
+            "content": "stinkFlower.jpg",
+            "imageUrl" : "https://s3.amazonaws.com/citybuzz/2015/08/denver-restaurants/denver-restaurants-10.jpg",
+            "comments" : []
+        },
+        {
+            "category": "Art",
+            "title": "Stink flowers in my garden1",
+            "description": "It is really stinky.",
+            "creator": "Skip",
+            "content": "stinkFlower.jpg",
+            "imageUrl" : "https://s3.amazonaws.com/citybuzz/2015/08/denver-restaurants/denver-restaurants-9.jpg",
+            "comments" : []
+        },
+        {
+            "category": "Art",
+            "title": "Stink flowers in my garden2",
+            "description": "It is really stinky.",
+            "creator": "Skip",
+            "content": "stinkFlower.jpg",
+            "imageUrl" : "https://s3.amazonaws.com/citybuzz/2015/08/denver-restaurants/denver-restaurants-7.jpg",
+            "comments" : []
         },
         {
             "category": "Food",
             "title": "Stink tofu in my kitchen",
             "description": "It is really stinky.",
             "creator": "Kathy",
-            "asset": "stinkTofu.jpg",
-            "comments" :[
-                {
-                    "user": "Shree",
-                    "comment": "awesome"
-                },
-                {
-                    "user": "Skip",
-                    "comment": "Taste awesome"
-                }
-            ]
+            "content": "stinkTofu.jpg",
+            "comments" : []
+        },
+        {
+            "category": "Food",
+            "title": "Stink tofu in my kitchen33",
+            "description": "It is really stinky.",
+            "creator": "Kathy",
+            "content": "stinkTofu.jpg",
+            "imageUrl" : "https://s3.amazonaws.com/citybuzz/2015/08/denver-restaurants/denver-restaurants-6.jpg",
+            "comments" : []
+        },
+        {
+            "category": "Food",
+            "title": "Stink tofu in my kitchen33 ",
+            "description": "It is really stinky sheen.",
+            "creator": "Kathy",
+            "content": "stinkTofu.jpg",
+            "imageUrl" : "https://s3.amazonaws.com/citybuzz/2015/08/denver-restaurants/denver-restaurants-5.jpg",
+            "comments" : []
+        },
+        {
+            "category": "Food",
+            "title": "Stink tofu in my kitchen44 EMC",
+            "description": "It is really stinky.",
+            "creator": "Kathy",
+            "content": "stinkTofu.jpg",
+            "imageUrl" : "https://s3.amazonaws.com/citybuzz/2015/08/denver-restaurants/denver-restaurants-4.jpg",
+            "comments" : []
+        },
+        {
+            "category": "Food",
+            "title": "Stink tofu in my kitchen55",
+            "description": "It is really stinky.",
+            "creator": "Kathy",
+            "content": "stinkTofu.jpg",
+            "imageUrl" : "https://s3.amazonaws.com/citybuzz/2015/08/denver-restaurants/denver-restaurants-3.jpg",
+            "comments" : []
+        },
+        {
+            "category": "Food",
+            "title": "Stink tofu in my kitchen66",
+            "description": "It is really stinky.",
+            "creator": "Kathy",
+            "content": "stinkTofu.jpg",
+            "imageUrl" : "https://s3.amazonaws.com/citybuzz/2015/08/denver-restaurants/denver-restaurants-2.jpg",
+            "comments" : []
+        },
+        {
+            "category": "Food",
+            "title": "Stink tofu in my kitchen77",
+            "description": "It is really stinky.",
+            "creator": "Kathy",
+            "content": "stinkTofu.jpg",
+            "imageUrl" : "https://s3.amazonaws.com/citybuzz/2015/08/denver-restaurants/denver-restaurants-8.jpg",
+            "comments" : []
         }
     ]
 }

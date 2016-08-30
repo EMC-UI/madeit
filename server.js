@@ -67,14 +67,14 @@ app.post('/madeit/emailUser', function (req, res) {
 });
 
 app.get('/madeit/artifacts', function (req, res) {
-    dataAccess.getArtifacts(req.query).then(function(result) {
-        console.log('http getArtifacts result', result);
-        res.json(result);
-    }, function(err) {
-        console.log('http getArtifacts err', err);
-        res.status(500).json(err);
-    });
-    // res.json(artifactsMock.artifacts);
+    // dataAccess.getArtifacts(req.query).then(function(result) {
+    //     console.log('http getArtifacts result', result);
+    //     res.json(result);
+    // }, function(err) {
+    //     console.log('http getArtifacts err', err);
+    //     res.status(500).json(err);
+    // });
+     res.json(artifactsMock.artifacts);
 });
 
 app.post('/madeit/artifacts', function (req, res) {

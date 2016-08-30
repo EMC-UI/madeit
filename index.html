@@ -49,7 +49,7 @@
                 </ul>
 
                 <form class="navbar-form navbar-right">
-                    <input type="text" ng-model="query" class="form-control search-box" placeholder="Search...">
+                    <input type="text" ng-click="resetFilter()" ng-model="query" class="form-control search-box" placeholder="Search...">
                     <!--<a class="clear" ng-click="query = null" ng-show="query != null">-->
                         <!--<span class="glyphicon glyphicon-remove-circle" style="position:absolute;top:17px;right:105px;"></span>-->
                     <!--</a>-->
@@ -57,22 +57,66 @@
             </div>
         </div>
     </nav>
-    <div class="row">
-        <div class="container-fluid">
-            <div  class="col-lg-3" ng-repeat="item in artifacts | filter:ddValue | filter: query">
-                <div class="card flex-column">
+
+    <div class="card-box-wrapper flex-row">
+        <div class="card-box" ng-class="{'no-scroll': active}">
+            <!--<div  class="col-lg-3" ng-repeat="item in artifacts | filter:ddValue | filter: query">-->
+            <!--<div class="card flex-column">-->
+            <!--<div class="wrapper" style="background: url('{{item.imageUrl == null ? 'http://softstribe.com/wp-content/uploads/2016/01/How-to-Remote-Upload-Files-in-WordPress.gif': item.imageUrl}}') center/cover no-repeat;">-->
+            <!--</div>-->
+            <!--<div class="content">-->
+            <!--<div class="content-header flex-row">-->
+            <!--<h2 class="title">{{item.title}}</h2>-->
+            <!--<span>12 <i class="fa fa-comment fa-lg fa-fw" aria-hidden="true"></i></span>-->
+            <!--</div>-->
+            <!--<p class="description">{{item.description}}</p>-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--<div class="row">-->
+                <div class="card flex-column" ng-repeat="item in artifacts | filter:ddValue | filter: query" ng-click="toggleActiveItem(item)">
+                    <!--<div class="wrapper" id="hd{{item.id}}"></div>-->
                     <div class="wrapper" style="background: url('{{item.imageUrl == null ? 'http://softstribe.com/wp-content/uploads/2016/01/How-to-Remote-Upload-Files-in-WordPress.gif': item.imageUrl}}') center/cover no-repeat;">
+                        <!--nothing in here, used for image-->
                     </div>
                     <div class="content">
-                        <div class="content-header flex-row">
+                        <div class="content-header">
                             <h2 class="title">{{item.title}}</h2>
-                            <span>12 <i class="fa fa-comment fa-lg fa-fw" aria-hidden="true"></i></span>
+                            <div class="count">{{item.comments.length}} <i class="fa fa-comment fa-lg fa-fw" aria-hidden="true"> </i></div>
                         </div>
-                        <p class="description">{{item.description}}</p>
+                        <!--<p class="description">{{item.desc}}</p>-->
                     </div>
                 </div>
-            </div>
+            <div class="card" ng-repeat="item in [0,1,2,3,4,5]"></div>
+            <!--</div>-->
+            <!--</div>-->
         </div>
+
+        <div class="card card-explode flex-column" ng-class="{'active': active}">
+        <div class="wrapper" style="background: url('{{active.imageUrl == null ? 'http://softstribe.com/wp-content/uploads/2016/01/How-to-Remote-Upload-Files-in-WordPress.gif': active.imageUrl}}') center/cover no-repeat;">
+            <!--nothing in here, used for image-->
+        </div>
+        <div class="content">
+            <div class="content-header flex-row">
+                <h2 class="title">{{active.title}}</h2>
+                <span ng-click="toggleCommentPanel()">{{active.comments.length}} <i class="fa fa-comment fa-lg fa-fw" aria-hidden="true"></i></span>
+            </div>
+            <p class="description">{{active.desc}}</p>
+        </div>
+        <div class="comment-panel flex-column" ng-class="{'open': showCommentPanel}">
+            <div class="comments-header">{{active.comments.length}} Comments</div>
+
+            <ul class="comments-wrapper">
+                <li ng-repeat="comment in active.comments">{{comment}}</li>
+            </ul>
+
+            <div class="add-comment flex-row">
+                <textarea name="newComment" ng-model="newComment"></textarea>
+                <button ng-click="saveComment(active, newComment)"><i class="fa fa-plus fa-lg fa-fw" aria-hidden="true"></i></button>
+            </div>
+
+            <div class="closer" ng-click="toggleCommentPanel()"><i class="fa fa-times fa-2x fa-fw" aria-hidden="true"></i></div>
+        </div>
+        <div class="closer" ng-click="toggleActiveItem(active)"><i class="fa fa-times fa-2x fa-fw" aria-hidden="true"></i></div>
     </div>
 
     <!-- popup box for add user started -->
