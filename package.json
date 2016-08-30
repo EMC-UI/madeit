@@ -11,11 +11,12 @@
     "start": "node ./server.js"
   },
   "dependencies": {
-    "express": "~4.13.4",
+    "asyncawait": "^1.0.3",
     "body-parser": "~1.14.2",
+    "express": "~4.13.4",
+    "gridfs": "^1.0.0",
     "mongodb": "^2.2.9",
     "promised-mongo": "^1.2.0",
-    "superagent": "^1.8.1",
-    "asyncawait": "^1.0.3"
+    "superagent": "^1.8.1"
   }
 }

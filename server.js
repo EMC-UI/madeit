@@ -1,6 +1,13 @@
 var mongoAccess = require('./mongo_access');
 var dataAccess = require('./dataAccess');
 
+// var mongodb = require('mongodb');
+// var fs = require('fs');
+// var Grid = require('gridfs');
+// var dbName = 'caveman';
+// var defaultDBConnection = `mongodb://128.222.174.194/${dbName}`;
+// var filePath = './assets/img/screenshot.png';
+
 var express = require('express');
 var bodyParser = require("body-parser");
 
@@ -18,6 +25,17 @@ app.use(bodyParser.urlencoded({ extended: true }));
 var url = require('url');
 var usersMock = require('./mock/users.json');
 var artifactsMock = require('./mock/artifacts.json');
+
+// mongodb.MongoClient.connect(defaultDBConnection, function(err, db) {
+//     var pos = filePath.lastIndexOf("/");
+//     var fileName = filePath.substring(pos + 1);
+//     var gfs = Grid(db, mongodb);
+//     gfs.list(db, function (err, files) {
+//         files.forEach(function(filename) {
+//             console.log("Found the following file names %s", filename);
+//         })
+//     })
+// });
 
 app.get('/madeit/users', function (req, res) {
     dataAccess.getUsers(req.query).then(function(result) {
