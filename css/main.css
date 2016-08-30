@@ -1,9 +1,203 @@
-@import URL(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css);
+/*@import URL(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css);*/
 
-h1 em {
-  font-weight: normal;
-}
+/*h1 em {*/
+  /*font-weight: normal;*/
+/*}*/
 
+/*html {*/
+  /*height: 100%;*/
+
+/*}*/
+
+/*body {*/
+  /*font-family: helvetica,arial, san-serif;*/
+  /*font-size: 16px;*/
+  /*display: flex;*/
+  /*flex-direction: column;*/
+  /*height: 100%;*/
+  /*margin: 0;*/
+  /*padding-top:70px;*/
+/*}*/
+
+/*.flex-row {*/
+  /*padding: 0;*/
+  /*margin: 0;*/
+  /*display: flex;*/
+  /*flex-flow: row wrap;*/
+  /*text-align: center;*/
+  /*justify-content: space-between;*/
+/*}*/
+/*.flex-column {*/
+  /*padding: 0;*/
+  /*margin: 0;*/
+  /*display: flex;*/
+  /*flex-flow: column;*/
+  /*text-align: center;*/
+  /*justify-content: space-between;*/
+/*}*/
+
+/*.container {*/
+  /*flex: 1;*/
+  /*display:flex;*/
+  /*flex-flow: row wrap;*/
+  /*overflow:auto;*/
+  /*align-items: flex-start;*/
+  /*justify-content: space-around;*/
+
+/*}*/
+
+/*.card {*/
+  /*flex: 0 0 17rem;*/
+  /*padding: .5em;*/
+  /*margin: 1em 0;*/
+  /*box-shadow: 0 10px 28px rgba(0, 0, 0, 0.3), 0 9px 6px rgba(0, 0, 0, 0.2);*/
+/*}*/
+
+/*.card .form-content {*/
+  /*align-items: center;*/
+  /*justify-content: space-between;*/
+  /*list-style-type: none;*/
+  /*z-index: -1;*/
+  /*!*-webkit-transition: -webkit-transform 0.3s;*/
+  /*transition: -webkit-transform 0.3s;*/
+  /*transition: transform 0.3s;*/
+  /*transition: transform 0.3s, -webkit-transform 0.3s;*/
+  /*-webkit-transform: translateY(100%);*/
+          /*transform: translateY(100%);*!*/
+  /*background-color: #536DFE;*/
+  /*height: 3rem;*/
+/*}*/
+/*.card .form-content li {*/
+  /*-webkit-box-flex: 1;*/
+  /*-webkit-flex: 1;*/
+      /*-ms-flex: 1;*/
+          /*flex: 1;*/
+          /*background-color: blue;*/
+/*}*/
+/*.card .wrapper {*/
+  /*background-color: green; !*white;*!*/
+  /*min-height: 36vh;*/
+
+  /*overflow: hidden;*/
+/*}*/
+
+/*!**/
+/*.card .wrapper:hover .data {*/
+  /*-webkit-transform: translateY(0);*/
+          /*transform: translateY(0);*/
+/*}*/
+/**!*/
+
+/*.card .content {*/
+  /*align-self: flex-end;*/
+  /*padding: 0.5rem 1rem;*/
+  /*z-index: 1;*/
+  /*background-color: white;*/
+
+/*}*/
+
+/*.card .content-header {*/
+  /*align-items: center;*/
+/*}*/
+
+/*.card .price {*/
+  /*-webkit-box-flex: 0;*/
+  /*-webkit-flex: 0;*/
+      /*-ms-flex: 0;*/
+          /*flex: 0;*/
+  /*font-size: 12px;*/
+/*}*/
+/*.card .form-btn {*/
+  /*-webkit-box-flex: 0;*/
+  /*-webkit-flex: 0;*/
+      /*-ms-flex: 0;*/
+          /*flex: 0;*/
+  /*cursor: pointer;*/
+  /*color: #536DFE;*/
+/*}*/
+/*.card .title {*/
+  /*font-size: 16px;*/
+  /*margin-top: 10px;*/
+  /*text-align: left;*/
+/*}*/
+/*.card .discription {*/
+  /*height: 3.5rem;*/
+  /*margin: 0;*/
+  /*text-align: left;*/
+/*}*/
+/*.card input[type='checkbox'] {*/
+  /*position: absolute;*/
+  /*opacity: 0;*/
+/*}*/
+/*.card input[type='checkbox']:checked + .form-content {*/
+  /*!**/
+  /*-webkit-transform: translateY(0);*/
+          /*transform: translateY(0);*/
+          /**!*/
+/*}*/
+
+/*.circle.active {*/
+  /*background: #2C95DD; }*/
+
+/*.proj-pic {*/
+  /*border-radius: 1em;*/
+  /*overflow: hidden;*/
+  /*width: 3.5em;*/
+  /*height: 3.5em;*/
+  /*display: block;*/
+  /*background-repeat: no-repeat;*/
+  /*background-position: center middle;*/
+  /*background-size: cover;*/
+  /*float: left; }*/
+
+/*.entry {*/
+  /*margin: .5vh 0;*/
+  /*height: 13vh;*/
+  /*padding: 1.5vh; }*/
+
+/*.top {*/
+  /*overflow: hidden; }*/
+
+/*h3 span {*/
+  /*opacity: .6;*/
+  /*font-weight: 100; }*/
+/*h3 em {*/
+  /*font-style: normal;*/
+  /*opacity: 1; }*/
+
+
+/*.bar {*/
+  /*background: green;*/
+  /*height: 3vh;*/
+  /*min-height: 18px;*/
+  /*display: block;*/
+  /*border-radius: 0.5em; }*/
+
+/*#left {*/
+  /*width: 8em;*/
+  /*flex-shrink: 1;*/
+/*}*/
+
+/*#right {*/
+  /*flex-grow: 1; }*/
+
+/*.circle {*/
+  /*width: 4em;*/
+  /*height: 4em;*/
+  /*display: block;*/
+  /*border-radius: 50%;*/
+  /*margin: 2em auto;*/
+  /*background: #d8d8d8;*/
+  /*text-align:center;*/
+  /*vertical-align:-20px;*/
+/*}*/
+
+/*#hd1*/
+/*{*/
+  /*background: url(https://s3.amazonaws.com/citybuzz/2015/08/denver-restaurants/denver-restaurants-9.jpg) center/cover no-repeat;*/
+/*}*/
+
+*, *::before, *::after {box-sizing: border-box;}
 html {
   height: 100%;
 
@@ -16,6 +210,7 @@ body {
   flex-direction: column;
   height: 100%;
   margin: 0;
+  overflow: hidden;
   padding-top:70px;
 }
 
@@ -27,6 +222,7 @@ body {
   text-align: center;
   justify-content: space-between;
 }
+
 .flex-column {
   padding: 0;
   margin: 0;
@@ -35,22 +231,50 @@ body {
   text-align: center;
   justify-content: space-between;
 }
-
-.container {
+.card-box-wrapper {
+  position: relative;
+  flex: 1;
+}
+.card-box {
+  position: relative;
   flex: 1;
   display:flex;
   flex-flow: row wrap;
   overflow:auto;
   align-items: flex-start;
   justify-content: space-around;
-
+}
+.card-box.no-scroll {
+  overflow: hidden;
 }
 
 .card {
-  flex: 0 0 17rem;
+  background-color: white;
+  flex: 0 0 18em;
   padding: .5em;
   margin: 1em 0;
+  /*   height: 17em; */
+  overflow: hidden;
   box-shadow: 0 10px 28px rgba(0, 0, 0, 0.3), 0 9px 6px rgba(0, 0, 0, 0.2);
+}
+.card:empty {
+  padding: 0;
+  box-shadow: none;
+}
+.card-explode {
+  flex: none;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: transform .3s ease-out;
+  transform: scale(0);
+  position: absolute;
+  z-index: 2;
+}
+.card-explode.active {
+  margin: 0;
+  transform: scale(1);
 }
 
 .card .form-content {
@@ -70,61 +294,138 @@ body {
 .card .form-content li {
   -webkit-box-flex: 1;
   -webkit-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
-          background-color: blue;
+  -ms-flex: 1;
+  flex: 1;
+  background-color: blue;
 }
+
 .card .wrapper {
+  flex:1;
   background-color: green; /*white;*/
   min-height: 36vh;
-
   overflow: hidden;
 }
 
-/*
-.card .wrapper:hover .data {
-  -webkit-transform: translateY(0);
-          transform: translateY(0);
-}
-*/
-
 .card .content {
-  align-self: flex-end;
+  flex: 0 0 auto;
+  /*   align-self: flex-end; */
   padding: 0.5rem 1rem;
   z-index: 1;
   background-color: white;
+}
 
+.comment-panel {
+  background:rgba(0,0,0,.85);
+  position:absolute;
+  top: 0;
+  right: 0;
+  bottom:0;
+  width:20em;
+  padding:1em;
+  z-index:3;
+  transform:translateX(100%);
+  transition:.3s ease-out;
+  color:white;
+}
+
+.comment-panel .closer {
+  background:rgba(0,0,0,.50);
+}
+
+.comment-panel.open{
+  transform:translateX(0);
+}
+
+.comments-header, .add-comment {
+  flex:0 0 auto;
+  padding:.5em;
+  /*align-items: center;*/
+}
+
+.comments-wrapper li {
+  padding:1em;
+  border-top:1px solid rgba(255,255,255,.2);
+  line-height:1.6;
+}
+.comments-wrapper {
+  flex:1;
+  overflow: auto;
+  margin:0;
+  padding:0;
+  list-style:none;
+  text-align: left;
+}
+
+.add-comment {
+  color: #333;
+}
+textarea {
+  font-size:inherit;
+  flex:1;
+  border:0;
+  height:4em;
+  resize:none;
+  padding:.5em;
+  border-radius:.45em;
+  /*outline:0;*/ /*remove blue focus*/
+}
+
+button {
+  border:0;
+  font-size:inherit;
+  margin-left:1em;
+  border-radius:.45em;
 }
 
 .card .content-header {
+  display: flex;
+  flex-flow: row;
   align-items: center;
+}
+.card .title {
+  flex: 1;
+  font-size: 16px;
+  margin-top: 10px;
+  text-align: left;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.card .count {
+  white-space: nowrap;
 }
 
 .card .price {
   -webkit-box-flex: 0;
   -webkit-flex: 0;
-      -ms-flex: 0;
-          flex: 0;
+  -ms-flex: 0;
+  flex: 0;
   font-size: 12px;
 }
 .card .form-btn {
   -webkit-box-flex: 0;
   -webkit-flex: 0;
-      -ms-flex: 0;
-          flex: 0;
+  -ms-flex: 0;
+  flex: 0;
   cursor: pointer;
   color: #536DFE;
 }
-.card .title {
-  font-size: 16px;
-  margin-top: 10px;
-  text-align: left;
-}
-.card .discription {
-  height: 3.5rem;
+
+.card .description {
   margin: 0;
   text-align: left;
+  height:50px;
 }
+
+.closer {
+  top:  0;
+  right: 0;
+  padding: .5em;
+  background: white;
+  position: absolute;
+
+}
+
 .card input[type='checkbox'] {
   position: absolute;
   opacity: 0;
@@ -136,63 +437,10 @@ body {
           */
 }
 
-.circle.active {
-  background: #2C95DD; }
-
-.proj-pic {
-  border-radius: 1em;
-  overflow: hidden;
-  width: 3.5em;
-  height: 3.5em;
-  display: block;
-  background-repeat: no-repeat;
-  background-position: center middle;
-  background-size: cover;
-  float: left; }
-
-.entry {
-  margin: .5vh 0;
-  height: 13vh;
-  padding: 1.5vh; }
-
-.top {
-  overflow: hidden; }
-
-h3 span {
-  opacity: .6;
-  font-weight: 100; }
-h3 em {
-  font-style: normal;
-  opacity: 1; }
-
-
-.bar {
-  background: green;
-  height: 3vh;
-  min-height: 18px;
-  display: block;
-  border-radius: 0.5em; }
-
-#left {
-  width: 8em;
-  flex-shrink: 1;
-}
-
-#right {
-  flex-grow: 1; }
-
-.circle {
-  width: 4em;
-  height: 4em;
-  display: block;
-  border-radius: 50%;
-  margin: 2em auto;
-  background: #d8d8d8;
-  text-align:center;
-  vertical-align:-20px;
-}
-
-#hd1
+.card .wrapper
 {
   background: url(https://s3.amazonaws.com/citybuzz/2015/08/denver-restaurants/denver-restaurants-9.jpg) center/cover no-repeat;
+}
+.modal-open .modal{
+  text-align: left;
 }
