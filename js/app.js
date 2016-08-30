@@ -1,11 +1,11 @@
 'use strict';
 
-angular.module('app', ['ngMessages'])
-    .run(['$rootScope', "$interval", function ($rootScope, $interval) {
+angular.module('app', ['ngMessages','ui.bootstrap','ngFileUpload'])
+    .run(['$rootScope', "$interval", function($rootScope, $interval) {
 
     }])
 
-    .controller('mainCtrl', ['$scope', '$http', '$rootScope', '$interval', function ($scope, $http, $rootScope, $interval) {
+    .controller('mainCtrl', ['$scope', '$http', '$rootScope', '$interval', '$timeout', 'Upload', function ($scope, $http, $rootScope, $interval, $timeout, Upload) {
         $scope.artifacts = [];
         $scope.artifact = {};
         $scope.users = [];
@@ -21,6 +21,10 @@ angular.module('app', ['ngMessages'])
         $scope.$watch("artifacts", function (newValue, oldValue) {
             $scope.notifyUsers();
         });
+        $scope.search = function (artifacts) {
+            // console.log(artifacts);
+            return !!((artifacts.description.indexOf($scope.query || '') !== -1 || artifacts.title.indexOf($scope.query || '') !== -1));
+        };
 
         $scope.filterArtifact = function (data) {
             console.log('filterArtifact', arguments);
@@ -33,7 +37,24 @@ angular.module('app', ['ngMessages'])
                 console.log('emailUser err', err);
             });
         };
+        $scope.uploadPic = function(file) {
+            file.upload = Upload.upload({
+                url: 'upload/artifact',
+                data: {user: $scope.user, file: file},
+            });
 
+            file.upload.then(function (response) {
+                $timeout(function () {
+                    file.result = response.data;
+                });
+            }, function (response) {
+                if (response.status > 0)
+                    $scope.errorMsg = response.status + ': ' + response.data;
+            }, function (evt) {
+                // Math.min is to fix IE which reports 200% sometimes
+                file.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
+            });
+        };
         $scope.addArtifact = function (artifact) {
             console.log('addArtifact', artifact);
             $http.post('/madeit/artifacts', artifact).then(function(response) {
@@ -73,4 +94,23 @@ angular.module('app', ['ngMessages'])
             $scope.getData('artifacts');
         };
         $scope.init();
-    }]);
+    }])
+    .directive('ddMenu', function() {
+        return {
+            restrict: 'A',
+            scope: {
+                value: '='
+            },
+            link: function(scope, element) {
+                // set the initial value
+                var $el = $(element);
+                scope.value = $el.find('li:first').text();
+
+                // listen for changes
+                $el.on('click', 'li', function() {
+                    scope.value = $(this).text();
+                    scope.$apply();
+                });
+            }
+        };
+    });
