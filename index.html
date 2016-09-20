@@ -18,13 +18,13 @@
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
-                        aria-expanded="false" aria-controls="navbar">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
+                <!--<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"-->
+                        <!--aria-expanded="false" aria-controls="navbar">-->
+                    <!--<span class="sr-only">Toggle navigation</span>-->
+                    <!--<span class="icon-bar"></span>-->
+                    <!--<span class="icon-bar"></span>-->
+                    <!--<span class="icon-bar"></span>-->
+                <!--</button>-->
                 <a class="navbar-brand" href="#">Made It</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
@@ -33,15 +33,16 @@
                         <span class="fa fa-cubes fa-lg fa-fw"></span>
                     </a></li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                           aria-expanded="true"><span class="glyphicon glyphicon-filter" aria-hidden="true"></span></a>
-                        <ul class="dropdown-menu"  dd-menu value="ddValue">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
+                            <span class="glyphicon glyphicon-filter" aria-hidden="true"></span>
+                        </a>
+                        <ul class="dropdown-menu" dd-menu value="ddValue">
                             <li><a href="" #>Art</a></li>
                             <li><a href="" #>Food</a></li>
                         </ul>
                     </li>
                     <li><a href="#" data-toggle="modal" data-target="#addUser">
-                            <span class="fa fa-user-plus fa-lg fa-fw"></span>
+                        <span class="fa fa-user-plus fa-lg fa-fw"></span>
                     </a></li>
                     <li><a href="#" data-toggle="modal" data-target="#showUsers">
                         <span class="fa fa-users fa-lg fa-fw"></span>
@@ -49,125 +50,117 @@
                 </ul>
 
                 <form class="navbar-form navbar-right">
-                    <input type="text" ng-click="resetFilter()" ng-model="query" class="form-control search-box" placeholder="Search...">
-                    <!--<a class="clear" ng-click="query = null" ng-show="query != null">-->
-                        <!--<span class="glyphicon glyphicon-remove-circle" style="position:absolute;top:17px;right:105px;"></span>-->
-                    <!--</a>-->
+                    <input type="text" ng-model="query" class="form-control search-box" placeholder="Search...">
                 </form>
             </div>
         </div>
     </nav>
 
     <div class="card-box-wrapper flex-row">
+
+        <!-- tile view -->
         <div class="card-box" ng-class="{'no-scroll': active}">
-            <!--<div  class="col-lg-3" ng-repeat="item in artifacts | filter:ddValue | filter: query">-->
-            <!--<div class="card flex-column">-->
-            <!--<div class="wrapper" style="background: url('{{item.imageUrl == null ? 'http://softstribe.com/wp-content/uploads/2016/01/How-to-Remote-Upload-Files-in-WordPress.gif': item.imageUrl}}') center/cover no-repeat;">-->
-            <!--</div>-->
-            <!--<div class="content">-->
-            <!--<div class="content-header flex-row">-->
-            <!--<h2 class="title">{{item.title}}</h2>-->
-            <!--<span>12 <i class="fa fa-comment fa-lg fa-fw" aria-hidden="true"></i></span>-->
-            <!--</div>-->
-            <!--<p class="description">{{item.description}}</p>-->
-            <!--</div>-->
-            <!--</div>-->
-            <!--<div class="row">-->
-                <div class="card flex-column" ng-repeat="item in artifacts | filter:ddValue | filter: query" ng-click="toggleActiveItem(item)">
-                    <!--<div class="wrapper" id="hd{{item.id}}"></div>-->
-                    <div class="wrapper" style="background: url('{{item.imageUrl == null ? 'http://softstribe.com/wp-content/uploads/2016/01/How-to-Remote-Upload-Files-in-WordPress.gif': item.imageUrl}}') center/cover no-repeat;">
-                        <!--nothing in here, used for image-->
-                    </div>
-                    <div class="content">
-                        <div class="content-header">
-                            <h2 class="title">{{item.title}}</h2>
-                            <div class="count">{{item.comments.length}} <i class="fa fa-comment fa-lg fa-fw" aria-hidden="true"> </i></div>
-                        </div>
-                        <!--<p class="description">{{item.desc}}</p>-->
+            <div class="card flex-column" ng-repeat="item in artifacts | filter:ddValue | filter: query" ng-click="toggleActiveItem(item)">
+                <div class="wrapper" style="background: url('{{item.imageUrl == null ? 'http://softstribe.com/wp-content/uploads/2016/01/How-to-Remote-Upload-Files-in-WordPress.gif': item.imageUrl}}') center/cover no-repeat;">
+                    <!--nothing in here, used for image-->
+                </div>
+                <div class="content">
+                    <div class="content-header">
+                        <h2 class="title">{{item.title}}</h2>
+                        <div class="count">{{item.comments.length}} <i class="fa fa-comment fa-lg fa-fw" aria-hidden="true"> </i></div>
                     </div>
                 </div>
-            <div class="card" ng-repeat="item in [0,1,2,3,4,5]"></div>
-            <!--</div>-->
-            <!--</div>-->
+            </div>
         </div>
 
+        <!-- detail view -->
         <div class="card card-explode flex-column" ng-class="{'active': active}">
-        <div class="wrapper" style="background: url('{{active.imageUrl == null ? 'http://softstribe.com/wp-content/uploads/2016/01/How-to-Remote-Upload-Files-in-WordPress.gif': active.imageUrl}}') center/cover no-repeat;">
-            <!--nothing in here, used for image-->
-        </div>
-        <div class="content">
-            <div class="content-header flex-row">
-                <h2 class="title">{{active.title}}</h2>
-                <span ng-click="toggleCommentPanel()">{{active.comments.length}} <i class="fa fa-comment fa-lg fa-fw" aria-hidden="true"></i></span>
+            <div class="wrapper" style="background: url('{{active.imageUrl == null ? 'http://softstribe.com/wp-content/uploads/2016/01/How-to-Remote-Upload-Files-in-WordPress.gif': active.imageUrl}}') center/cover no-repeat;">
+                <!--nothing in here, used for image-->
             </div>
-            <p class="description">{{active.desc}}</p>
-        </div>
-        <div class="comment-panel flex-column" ng-class="{'open': showCommentPanel}">
-            <div class="comments-header">{{active.comments.length}} Comments</div>
-
-            <ul class="comments-wrapper">
-                <li ng-repeat="comment in active.comments">{{comment}}</li>
-            </ul>
-
-            <div class="add-comment flex-row">
-                <textarea name="newComment" ng-model="newComment"></textarea>
-                <button ng-click="saveComment(active, newComment)"><i class="fa fa-plus fa-lg fa-fw" aria-hidden="true"></i></button>
+            <div class="content">
+                <div class="content-header flex-row">
+                    <h2 class="title">{{active.title}}</h2>
+                    <span ng-click="toggleCommentPanel()">{{active.comments.length}}
+                        <i class="fa fa-comment fa-lg fa-fw" aria-hidden="true"></i>
+                    </span>
+                </div>
+                <p class="description">{{active.desc}}</p>
             </div>
 
-            <div class="closer" ng-click="toggleCommentPanel()"><i class="fa fa-times fa-2x fa-fw" aria-hidden="true"></i></div>
-        </div>
-        <div class="closer" ng-click="toggleActiveItem(active)"><i class="fa fa-times fa-2x fa-fw" aria-hidden="true"></i></div>
-    </div>
+            <div class="comment-panel flex-column" ng-class="{'open': showCommentPanel}">
+                <div class="comments-header">{{active.comments.length}} Comments</div>
+                <ul class="comments-wrapper">
+                    <li ng-repeat="comment in active.comments">{{comment}}</li>
+                </ul>
+                <div class="add-comment flex-row">
+                    <textarea name="newComment" ng-model="newComment"></textarea>
+                    <button ng-click="saveComment(active, newComment)">
+                        <i class="fa fa-plus fa-lg fa-fw" aria-hidden="true"></i>
+                    </button>
+                </div>
+                <!-- x to close -->
+                <div class="closer" ng-click="toggleCommentPanel()">
+                    <i class="fa fa-times fa-2x fa-fw" aria-hidden="true"></i>
+                </div>
+            </div>
 
-    <!-- popup box for add user started -->
-    <div class="modal fade" id="addUser" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <a class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></a>
-                    <h4 class="modal-title" id="userModal">New User</h4>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="form-group">
-                            <label for="userCategory" class="control-label">Category</label>
-                            <select class="form-control" id="userCategory" ng-model="user.category">
-                                <option>All</option>
-                                <option>Artist</option>
-                                <option>Foodie</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="userName" class="control-label">Name</label>
-                            <input type="text" class="form-control" id="userName" ng-model="user.name">
-                        </div>
-                        <div class="form-group">
-                            <label for="userEmail" class="control-label">Email</label>
-                            <input type="text" class="form-control" id="userEmail" ng-model="user.email">
-                        </div>
-                        <div class="form-group">
-                            <label for="userDescription" class="control-label">Description</label>
-                            <textarea class="form-control" id="userDescription" ng-model="user.description"></textarea>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="addUser(user)">Save</button>
+            <!-- x to close -->
+            <div class="closer" ng-click="toggleActiveItem(active)">
+                <i class="fa fa-times fa-2x fa-fw" aria-hidden="true"></i>
+            </div>
+        </div>
+
+        <!-- popup box for add user started -->
+        <div class="modal fade" id="addUser" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <a class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></a>
+                        <h4 class="modal-title" id="userModal">New User</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="userCategory" class="control-label">Category</label>
+                                <select class="form-control" id="userCategory" ng-model="user.category">
+                                    <option>All</option>
+                                    <option>Artist</option>
+                                    <option>Foodie</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="userName" class="control-label">Name</label>
+                                <input type="text" class="form-control" id="userName" ng-model="user.name">
+                            </div>
+                            <div class="form-group">
+                                <label for="userEmail" class="control-label">Email</label>
+                                <input type="text" class="form-control" id="userEmail" ng-model="user.email">
+                            </div>
+                            <div class="form-group">
+                                <label for="userDescription" class="control-label">Description</label>
+                                <textarea class="form-control" id="userDescription" ng-model="user.description"></textarea>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="addUser(user)">Save
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- popup box for display user started -->
-    <div class="modal fade" id="showUsers" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <a class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></a>
-                    <h4 class="modal-title" id="displayUserModal">Users</h4>
-                </div>
-                <div class="modal-body" ng-repeat="user in users">
+        <!-- popup box for display user started -->
+        <div class="modal fade" id="showUsers" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <a class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></a>
+                        <h4 class="modal-title" id="displayUserModal">Users</h4>
+                    </div>
+                    <div class="modal-body" ng-repeat="user in users">
                         <div>
                             <label class="control-label">Category</label> {{user.category}}
                         </div>
@@ -180,57 +173,62 @@
                         <div>
                             <label for="userDescription" class="control-label">Description</label> {{user.description}}
                         </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <!--<button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="saveUser(user)">Save</button>-->
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <!--<button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="saveUser(user)">Save</button>-->
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- popup box to add new artifact started -->
-    <div class="modal fade" id="addContent" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <a class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></a>
-                    <h4 class="modal-title" id="contentModal">New Content</h4>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="form-group">
-                            <label for="artifactCategory" class="control-label">Category</label>
-                            <select class="form-control" id="artifactCategory" ng-model="artifact.category">
-                                <option>Art</option>
-                                <option>Food</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="artifactTitle" class="control-label">Title</label>
-                            <input type="text" class="form-control" id="artifactTitle" ng-model="artifact.title">
-                        </div>
-                        <div class="form-group">
-                            <label for="artifactDescription" class="control-label">Description</label>
-                            <textarea class="form-control" id="artifactDescription" ng-model="artifact.description"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="artifactAsset" class="control-label">Asset</label>
-                            <textarea class="form-control" id="artifactAsset" ng-model="artifact.asset"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="artifactCreator" class="control-label">User Name</label>
-                            <input type="text" class="form-control" id="artifactCreator" ng-model="artifact.creator">
-                        </div>
-                        <div class="form-group">
-                            <label for="artifactComments" class="control-label">Comments</label>
-                            <textarea class="form-control" id="artifactComments" ng-model="artifact.comments"></textarea>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="addArtifact(artifact)">Save</button>
+        <!-- popup box to add new artifact started -->
+        <div class="modal fade" id="addContent" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <a class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></a>
+                        <h4 class="modal-title" id="contentModal">New Content</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="artifactCategory" class="control-label">Category</label>
+                                <select class="form-control" id="artifactCategory" ng-model="artifact.category">
+                                    <option>Art</option>
+                                    <option>Food</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="artifactTitle" class="control-label">Title</label>
+                                <input type="text" class="form-control" id="artifactTitle" ng-model="artifact.title">
+                            </div>
+                            <div class="form-group">
+                                <label for="artifactDescription" class="control-label">Description</label>
+                                <textarea class="form-control" id="artifactDescription"
+                                          ng-model="artifact.description"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="artifactAsset" class="control-label">Asset</label>
+                                <textarea class="form-control" id="artifactAsset" ng-model="artifact.asset"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="artifactCreator" class="control-label">User Name</label>
+                                <input type="text" class="form-control" id="artifactCreator" ng-model="artifact.creator">
+                            </div>
+                            <div class="form-group">
+                                <label for="artifactComments" class="control-label">Comments</label>
+                                <textarea class="form-control" id="artifactComments"
+                                          ng-model="artifact.comments"></textarea>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="addArtifact(artifact)">
+                            Save
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
