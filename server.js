@@ -1,12 +1,11 @@
+const multer = require('multer');
+
+var upload = multer({
+    storage: multer.memoryStorage()
+});
+
 var mongoAccess = require('./mongo_access');
 var dataAccess = require('./dataAccess');
-
-// var mongodb = require('mongodb');
-// var fs = require('fs');
-// var Grid = require('gridfs');
-// var dbName = 'caveman';
-// var defaultDBConnection = `mongodb://128.222.174.194/${dbName}`;
-// var filePath = './assets/img/screenshot.png';
 
 var express = require('express');
 var bodyParser = require("body-parser");
@@ -21,26 +20,14 @@ app.use(express.static('./assets'));
 app.use(bodyParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-
 var url = require('url');
 var usersMock = require('./mock/users.json');
 var artifactsMock = require('./mock/artifacts.json');
 
-// mongodb.MongoClient.connect(defaultDBConnection, function(err, db) {
-//     var pos = filePath.lastIndexOf("/");
-//     var fileName = filePath.substring(pos + 1);
-//     var gfs = Grid(db, mongodb);
-//     gfs.list(db, function (err, files) {
-//         files.forEach(function(filename) {
-//             console.log("Found the following file names %s", filename);
-//         })
-//     })
-// });
-
 app.get('/madeit/users', function (req, res) {
     dataAccess.getUsers(req.query).then(function(result) {
         console.log('http getUsers result', result);
-        res.json(result);
+        res.status(200).json(result);
     }, function(err) {
         console.log('http getUsers err', err);
         res.status(500).json(err);
@@ -52,14 +39,12 @@ app.post('/madeit/users', function (req, res) {
     var user = req.body;
     dataAccess.addUser(user).then(function(result) {
         console.log('http post add user result', result);
-        res.json(result);
+        res.status(200).json(result);
     }, function(err) {
         console.log('http post add user err', err);
         res.status(500).json(err);
     });
-
-    // res.status(304).json({status:304 });
-    // res.status(200);
+    // res.status(200).end;
 });
 
 app.post('/madeit/emailUser', function (req, res) {
@@ -67,21 +52,22 @@ app.post('/madeit/emailUser', function (req, res) {
 });
 
 app.get('/madeit/artifacts', function (req, res) {
-    // dataAccess.getArtifacts(req.query).then(function(result) {
-    //     console.log('http getArtifacts result', result);
-    //     res.json(result);
-    // }, function(err) {
-    //     console.log('http getArtifacts err', err);
-    //     res.status(500).json(err);
-    // });
-     res.json(artifactsMock.artifacts);
+    dataAccess.getArtifacts(req.query).then(function(result) {
+        console.log('http getArtifacts result', result);
+        res.status(200).json(result);
+    }, function(err) {
+        console.log('http getArtifacts err', err);
+        res.status(500).json(err);
+    });
+     // res.json(artifactsMock.artifacts);
 });
 
-app.post('/madeit/artifacts', function (req, res) {
+
+app.put('/madeit/artifacts', function (req, res) {
     var artifact = req.body;
-    dataAccess.addArtifact(artifact).then(function(result) {
-        console.log('http post artifacts db result', result);
-        res.json(result);
+    dataAccess.updateArtifact(artifact).then(function(result) {
+        console.log('http put updateArtifact db result', result);
+        res.status(200);
     }, function(err) {
         console.log('http post artifacts db err', err);
         res.status(500).json(err);
@@ -89,6 +75,54 @@ app.post('/madeit/artifacts', function (req, res) {
 
     // res.status(200).end;
 });
+
+app.post('/madeit/artifacts', function (req, res) {
+    var artifact = req.body;
+    dataAccess.addArtifact(artifact).then(function(result) {
+        console.log('http post addArtifact db result', result);
+        res.status(200).json(result);
+    }, function(err) {
+        console.log('http post artifacts db err', err);
+        res.status(500).json(err);
+    });
+
+    // res.status(200).end;
+});
+
+app.get('/madeit/images', function (req, res) {
+    var fileName = req.query.fileName;
+    console.log('http get /madeit/images fileName', fileName);
+    mongoAccess.getFileFromMongo(fileName, function(data) {
+        console.log('/madeit/images readFileDone');
+        res.json({
+            images: data
+        })
+    });
+});
+
+var handleBigPost = function(req, res, next) {
+    console.log(' handleBigPost body', req.body);
+    console.log('handleBigPost file', req.file);
+
+    // could write to gridFS here, just saving to local arrayimages.push(req.file.buffer.toString('base64'))
+    var cfg = {
+        filename: req.body.title,
+        metadata: req.body.description
+    };
+    mongoAccess.writeFileToMongo(cfg, req.file.buffer).then(function() {
+        console.log('http post handleBigPost good');
+        res.status(201).json({
+            status: 'ok'
+        });
+    }, function(err) {
+        console.log('http post handleBigPost err');
+        res.status(500).json(err);
+    });
+};
+
+//  curl -i -F file=@/Users/lairdk/aDev/src/hacka/EMC-UI/madeit/assets/img/proj-0.png http://localhost:3000/saveimage -F title='proj-0.png'
+app.post('/madeit/images', upload.single('file'), handleBigPost);
+
 
 app.listen(3000, function () {
     console.log('MADEIT app listening on port 3000!');

@@ -12,12 +12,8 @@ var addUser = function(user) {
     // console.log('addUser', user);
     return db.collection('users').insert(user).then(function (result) {
         console.log('db.addUser good: ', result);
-        return 200;
+        return result;
     });
-    // .catch(function (err) {
-    //     console.log('addUser error: ', err);
-    //     return err;
-    // });
 };
 
 var getUsers = function(params) {
@@ -34,6 +30,14 @@ var addArtifact = function(artifact) {
     console.log('db.addArtifact', artifact);
     return db.collection('artifacts').insert(artifact).then(function (result) {
         console.log('db.addArtifact good: ', result);
+        return result;
+    })
+};
+
+var updateArtifact = function(artifact) {
+    console.log('db.updateArtifact', artifact);
+    return db.collection('artifacts').update({title: artifact.title}, {comments: artifact.comments}).then(function (result) {
+        console.log('db.updateArtifact good: ', result);
         return 200;
     })
 };
@@ -52,6 +56,7 @@ module.exports = {
     addUser: addUser,
     getUsers: getUsers,
     getArtifacts: getArtifacts,
-    addArtifact: addArtifact
+    addArtifact: addArtifact,
+    updateArtifact: updateArtifact
 };
 

@@ -17,6 +17,8 @@
     "gridfs": "^1.0.0",
     "mongodb": "^2.2.9",
     "promised-mongo": "^1.2.0",
-    "superagent": "^1.8.1"
+    "superagent": "^1.8.1",
+    "bluebird": "^3.3.5",
+    "multer": "^1.2.0"
   }
 }

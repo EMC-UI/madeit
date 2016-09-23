@@ -1,30 +1,19 @@
 var mongodb = require('mongodb');
-var fs = require('fs');
-var Grid = require('gridfs');
+var bluebird = require('bluebird');
+var mongoClient = bluebird.promisifyAll(mongodb).MongoClient;
 var dbName = 'caveman';
-var defaultDBConnection = 'mongodb://128.222.174.194/' + dbName;
+var defaultDBConnection = 'mongodb://localhost:27017/' + dbName;
 
-var writeFileToMongo = function (filePath) {
-    mongodb.MongoClient.connect(defaultDBConnection, function(err, db) {
-        var pos = filePath.lastIndexOf("/");
-        var fileName = filePath.substring(pos + 1);
+var Grid = require('gridfs');
+
+var writeFileToMongo = function (cfg, buffer) {
+    return mongoClient.connect(defaultDBConnection).then(function(db) {
         var gfs = Grid(db, mongodb);
-        gfs.fromFile({filename: fileName}, filePath, function (err, file) {
-            console.log('saved %s to GridFS file %s', filePath, file.filename);
+        gfs.writeFile(cfg, buffer, function(err,file) {
+            console.log(err,file);
         });
-    });
-};
-
-var getListOfMongoFiles = function(callback) {
-    var fileNames = [];
-    mongodb.MongoClient.connect(defaultDBConnection, function (err, db) {
-        var gfs = Grid(db, mongodb);
-        gfs.list(function (err, files) {
-            files.forEach(function(filename) {
-                fileNames.push(filename);
-            });
-            callback(fileNames);
-        })
+    }, function(err){
+        console.log('writeFileToMongo err', err);
     });
 };
 
@@ -38,9 +27,7 @@ var getFileFromMongo = function (fileName, callback) {
     });
 };
 
-
 module.exports = {
     writeFileToMongo: writeFileToMongo,
-    getListOfMongoFiles: getListOfMongoFiles,
     getFileFromMongo: getFileFromMongo
-}
+};

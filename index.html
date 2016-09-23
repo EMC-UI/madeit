@@ -12,6 +12,7 @@
     <script src="bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
     <script src="bower_components/ng-file-upload/ng-file-upload-all.min.js"></script>
     <script src="js/app.js"></script>
+    <script src="js/fileUploadController.js"></script>
 </head>
 
 <body ng-controller="mainCtrl" ng-app="app">
@@ -29,7 +30,7 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#" data-toggle="modal" data-target="#addContent">
+                    <li><a href="#" data-toggle="modal" data-target="#addArtifact">
                         <span class="fa fa-cubes fa-lg fa-fw"></span>
                     </a></li>
                     <li class="dropdown">
@@ -183,7 +184,7 @@
         </div>
 
         <!-- popup box to add new artifact started -->
-        <div class="modal fade" id="addContent" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+        <div class="modal fade" id="addArtifact" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -212,14 +213,23 @@
                                 <label for="artifactAsset" class="control-label">Asset</label>
                                 <textarea class="form-control" id="artifactAsset" ng-model="artifact.asset"></textarea>
                             </div>
+
+                            <div ng-controller="FileUploadController">
+                                <input id="fileInputElement" type="file"/><br/>
+                                <button ng-click="uploadImage()">Upload me</button>
+                                <div ng-repeat="b64ImageData in images track by $index">
+                                    <img width="100"  src="data:image/png;base64,{{b64ImageData}}"/>
+                                </div>
+                            </div>
+
                             <div class="form-group">
                                 <label for="artifactCreator" class="control-label">User Name</label>
                                 <input type="text" class="form-control" id="artifactCreator" ng-model="artifact.creator">
                             </div>
                             <div class="form-group">
-                                <label for="artifactComments" class="control-label">Comments</label>
-                                <textarea class="form-control" id="artifactComments"
-                                          ng-model="artifact.comments"></textarea>
+                                <label for="artifactComment" class="control-label">Comments</label>
+                                <textarea class="form-control" id="artifactComment"
+                                          ng-model="artifact.oneComment"></textarea>
                             </div>
                         </form>
                     </div>

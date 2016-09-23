@@ -29,9 +29,10 @@ angular.module('app', ['ngMessages','ui.bootstrap','ngFileUpload'])
         };
 
         $scope.newComment='';
-        $scope.saveComment = function(item,newComment){
+        $scope.saveComment = function(item, newComment){
             item.comments.push(newComment);
             $scope.newComment='';
+            $scope.updateArtifact(item);
         };
 
         $scope.notifyUsers = function () {
@@ -65,17 +66,24 @@ angular.module('app', ['ngMessages','ui.bootstrap','ngFileUpload'])
             // });
         };
 
+        $scope.updateArtifact = function (artifact) {
+            console.log('updateArtifact', artifact);
+            $http.put('/madeit/artifacts', artifact).then(function(response) {
+                console.log('updateArtifact good', response);
+                // $scope.artifacts.push(artifact);
+            }, function(err) {
+                console.log('updateArtifact err', err);
+            });
+        };
+
         $scope.addArtifact = function (artifact) {
             console.log('addArtifact', artifact);
+            artifact.comments = [artifact.oneComment];
+            delete artifact.oneComment;
             $http.post('/madeit/artifacts', artifact).then(function(response) {
                 console.log('addArtifact good', response);
-                $scope.artifacts.push(artifact);
-                artifact.category = '';
-                artifact.description = '';
-                artifact.title = '';
-                artifact.asset = '';
-                artifact.comments = '';
-                artifact.creator = '';
+                $scope.artifacts.push(response.data);
+                $scope.artifact = {};
             }, function(err) {
                 console.log('addArtifact err', err);
             });
@@ -85,7 +93,8 @@ angular.module('app', ['ngMessages','ui.bootstrap','ngFileUpload'])
             console.log('addUser', user);
             $http.post('/madeit/users', user).then(function(response) {
                 console.log('addUser good', response);
-                $scope.users.push(user);
+                $scope.users.push(response.data);
+                $scope.user = {};
             }, function(err) {
                 console.log('addUser err', err);
             });
