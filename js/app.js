@@ -1,11 +1,10 @@
 'use strict';
 
 angular.module('app', ['ngMessages','ui.bootstrap','ngFileUpload'])
-    .run(['$rootScope', '$interval', function($rootScope, $interval) {
-
+    .run(['$rootScope', function($rootScope) {
     }])
 
-    .controller('mainCtrl', ['$scope', '$http', '$rootScope', '$interval', '$timeout', 'Upload', function ($scope, $http, $rootScope, $interval, $timeout, Upload) {
+    .controller('mainCtrl', ['$scope', '$http', '$q', 'FileUploadSvc',  function ($scope, $http, $q, fileUploadSvc) {
         $scope.artifacts = [];
         $scope.artifact = {};
         $scope.users = [];
@@ -35,14 +34,12 @@ angular.module('app', ['ngMessages','ui.bootstrap','ngFileUpload'])
             $scope.updateArtifact(item);
         };
 
-        $scope.notifyUsers = function () {
-            console.log('notifyUsers');
-        };
-
-        $scope.$watch('artifacts', function (newValue, oldValue) {
-            $scope.notifyUsers();
-        });
-        //
+        // $scope.notifyUsers = function () {
+        //     console.log('notifyUsers');
+        // };
+        // $scope.$watch('artifacts', function (newValue, oldValue) {
+        //     $scope.notifyUsers();
+        // });
         // $scope.search = function (artifacts) {
         //     console.log('search 1111');
         //     if($scope.query != null){
@@ -64,6 +61,46 @@ angular.module('app', ['ngMessages','ui.bootstrap','ngFileUpload'])
             // }, function(err) {
             //     console.log('emailUser err', err);
             // });
+        };
+
+        var uploadRequestPromise;
+        $scope.imageLoaded = false;
+        $scope.uploadFileName = '';
+        $scope.uploadFileImage = '';
+
+        $scope.uploadImage = function() {
+            $scope.imageLoaded = false;
+            $scope.uploadFileName = '';
+            $scope.uploadFileImage = '';
+
+            var elem = angular.element(document.getElementById('fileInputElement'));
+            // no need to read the bytes in from the file
+            var file = elem[0].files[0];
+            $scope.uploadFileName = file.name;
+            console.log('uploadImage file=', file);
+
+            uploadRequestPromise = fileUploadSvc.uploadImage(file);
+            $q.when(uploadRequestPromise).then(function(result) {
+                $scope.imageLoaded = true;
+                console.log('uploadImage OK', result);
+
+                // now get the image for display
+                uploadRequestPromise = fileUploadSvc.getImage($scope.uploadFileName);
+                $q.when(uploadRequestPromise).then(function(result) {
+                    console.log('getImage OK', result);
+                    $scope.uploadFileImage = result.data.image;
+                }, function(err) {
+                    $scope.imageLoaded = false;
+                    $scope.uploadFileName = '';
+                    $scope.uploadFileImage = '';
+                    console.log('getImage err', err);
+                });
+            }, function(err) {
+                $scope.imageLoaded = false;
+                $scope.uploadFileName = '';
+                $scope.uploadFileImage = '';
+                console.log('uploadImage err', err);
+            });
         };
 
         $scope.updateArtifact = function (artifact) {

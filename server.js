@@ -95,7 +95,7 @@ app.get('/madeit/images', function (req, res) {
     mongoAccess.getFileFromMongo(fileName, function(data) {
         console.log('/madeit/images readFileDone');
         res.json({
-            images: data
+            image: data
         })
     });
 });
@@ -111,9 +111,7 @@ var handleBigPost = function(req, res, next) {
     };
     mongoAccess.writeFileToMongo(cfg, req.file.buffer).then(function() {
         console.log('http post handleBigPost good');
-        res.status(201).json({
-            status: 'ok'
-        });
+        res.status(201).end();
     }, function(err) {
         console.log('http post handleBigPost err');
         res.status(500).json(err);
