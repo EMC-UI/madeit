@@ -62,8 +62,8 @@
         <!-- tile view -->
         <div class="card-box" ng-class="{'no-scroll': active}">
             <div class="card flex-column" ng-repeat="item in artifacts | filter:ddValue | filter: query" ng-click="toggleActiveItem(item)">
-                <div class="wrapper" style="background: url('{{item.imageUrl == null ? 'http://softstribe.com/wp-content/uploads/2016/01/How-to-Remote-Upload-Files-in-WordPress.gif': item.imageUrl}}') center/cover no-repeat;">
-                    <!--nothing in here, used for image-->
+                <div class="wrapper" >
+                    <img ng-if="item.image!=''" width="100"  src="data:image/png;base64,{{item.image}}" style="text-align: center; padding-top:30px;"/>
                 </div>
                 <div class="content">
                     <div class="content-header">
@@ -76,8 +76,10 @@
 
         <!-- detail view -->
         <div class="card card-explode flex-column" ng-class="{'active': active}">
-            <div class="wrapper" style="background: url('{{active.imageUrl == null ? 'http://softstribe.com/wp-content/uploads/2016/01/How-to-Remote-Upload-Files-in-WordPress.gif': active.imageUrl}}') center/cover no-repeat;">
-                <!--nothing in here, used for image-->
+            <!--<div ng-if="active.image==''" class="wrapper">-->
+            <!--</div>-->
+            <div class="wrapper" >
+                <img ng-if="active.image!=''"  width="100"  src="data:image/png;base64,{{active.image}}"/>
             </div>
             <div class="content">
                 <div class="content-header flex-row">
@@ -209,19 +211,18 @@
                                 <textarea class="form-control" id="artifactDescription"
                                           ng-model="artifact.description"></textarea>
                             </div>
-                            <div class="form-group">
-                                <label for="artifactAsset" class="control-label">Asset</label>
-                                <textarea class="form-control" id="artifactAsset" ng-model="artifact.asset"></textarea>
-                            </div>
-
+                            <!--<div class="form-group">-->
+                                <!--<label for="artifactAsset" class="control-label">Asset</label>-->
+                                <!--<textarea class="form-control" id="artifactAsset" ng-model="artifact.asset"></textarea>-->
+                            <!--</div>-->
                             <div ng-show="!imageLoaded">
                                 <input id="fileInputElement" type="file"/><br/>
                                 <button ng-click="uploadImage()">Upload me</button>
                             </div>
 
                             <div ng-show="imageLoaded">
-                                Image File Name: {{ uploadFileName }}
-                                <img width="100"  src="data:image/png;base64,{{uploadFileImage}}"/>
+                                Image File Name: {{ artifact.imageName }}
+                                <img width="100"  src="data:image/png;base64,{{artifact.image}}"/>
                             </div>
 
                             <div class="form-group">

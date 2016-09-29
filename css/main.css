@@ -439,7 +439,8 @@ button {
 
 .card .wrapper
 {
-  background: url(https://s3.amazonaws.com/citybuzz/2015/08/denver-restaurants/denver-restaurants-9.jpg) center/cover no-repeat;
+  /*background: url(https://s3.amazonaws.com/citybuzz/2015/08/denver-restaurants/denver-restaurants-9.jpg) center/cover no-repeat;*/
+  /*background: url(http://softstribe.com/wp-content/uploads/2016/01/How-to-Remote-Upload-Files-in-WordPress.gif) center/cover no-repeat;*/
 }
 .modal-open .modal{
   text-align: left;

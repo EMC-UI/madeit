@@ -5,8 +5,20 @@ angular.module('app', ['ngMessages','ui.bootstrap','ngFileUpload'])
     }])
 
     .controller('mainCtrl', ['$scope', '$http', '$q', 'FileUploadSvc',  function ($scope, $http, $q, fileUploadSvc) {
+        var resetArtifact = function() {
+            $scope.imageLoaded = false;
+            $scope.artifact = {
+                category : 'Art',
+                title : '',
+                description : '',
+                creator : '',
+                imageName: '',
+                image: '',
+                comments: []
+            };
+        };
+
         $scope.artifacts = [];
-        $scope.artifact = {};
         $scope.users = [];
         $scope.user = {};
 
@@ -34,24 +46,6 @@ angular.module('app', ['ngMessages','ui.bootstrap','ngFileUpload'])
             $scope.updateArtifact(item);
         };
 
-        // $scope.notifyUsers = function () {
-        //     console.log('notifyUsers');
-        // };
-        // $scope.$watch('artifacts', function (newValue, oldValue) {
-        //     $scope.notifyUsers();
-        // });
-        // $scope.search = function (artifacts) {
-        //     console.log('search 1111');
-        //     if($scope.query != null){
-        //         return !!((artifacts.description.indexOf($scope.query || '') !== -1 || artifacts.title.indexOf($scope.query || '') !== -1));
-        //     }
-        // };
-
-        // $scope.resetSearch = function(){
-        //     console.log('resetSearch');
-        //     $scope.ddValue = '';
-        // };
-
         $scope.filterArtifact = function (data) {
             $scope.getData('artifacts', {category: data});
 
@@ -65,40 +59,40 @@ angular.module('app', ['ngMessages','ui.bootstrap','ngFileUpload'])
 
         var uploadRequestPromise;
         $scope.imageLoaded = false;
-        $scope.uploadFileName = '';
-        $scope.uploadFileImage = '';
+
+        $scope.getImage = function(fileName, callback) {
+            uploadRequestPromise = fileUploadSvc.getImage(fileName);
+            $q.when(uploadRequestPromise).then(function(result) {
+                console.log('getImage OK', result);
+                callback(result.data.image);
+            }, function(err) {
+                console.log('getImage err', err);
+            });
+        };
 
         $scope.uploadImage = function() {
             $scope.imageLoaded = false;
-            $scope.uploadFileName = '';
-            $scope.uploadFileImage = '';
+            $scope.artifact.imageName = '';
+            $scope.artifact.image = '';
 
             var elem = angular.element(document.getElementById('fileInputElement'));
             // no need to read the bytes in from the file
             var file = elem[0].files[0];
-            $scope.uploadFileName = file.name;
+            $scope.artifact.imageName = file.name;
             console.log('uploadImage file=', file);
 
             uploadRequestPromise = fileUploadSvc.uploadImage(file);
             $q.when(uploadRequestPromise).then(function(result) {
-                $scope.imageLoaded = true;
                 console.log('uploadImage OK', result);
-
-                // now get the image for display
-                uploadRequestPromise = fileUploadSvc.getImage($scope.uploadFileName);
-                $q.when(uploadRequestPromise).then(function(result) {
-                    console.log('getImage OK', result);
-                    $scope.uploadFileImage = result.data.image;
-                }, function(err) {
-                    $scope.imageLoaded = false;
-                    $scope.uploadFileName = '';
-                    $scope.uploadFileImage = '';
-                    console.log('getImage err', err);
+                // $scope.getImage($scope.artifact.imageName, $scope.artifact.image);
+                $scope.getImage($scope.artifact.imageName, function(result) {
+                    $scope.artifact.image = result;
+                    $scope.imageLoaded = true;
                 });
             }, function(err) {
                 $scope.imageLoaded = false;
-                $scope.uploadFileName = '';
-                $scope.uploadFileImage = '';
+                $scope.artifact.imageName = '';
+                $scope.artifact.image = '';
                 console.log('uploadImage err', err);
             });
         };
@@ -119,8 +113,9 @@ angular.module('app', ['ngMessages','ui.bootstrap','ngFileUpload'])
             delete artifact.oneComment;
             $http.post('/madeit/artifacts', artifact).then(function(response) {
                 console.log('addArtifact good', response);
+                response.data.image = artifact.image;
                 $scope.artifacts.push(response.data);
-                $scope.artifact = {};
+                resetArtifact();
             }, function(err) {
                 console.log('addArtifact err', err);
             });
@@ -148,11 +143,28 @@ angular.module('app', ['ngMessages','ui.bootstrap','ngFileUpload'])
             });
         };
 
+        var loadArtifacts = function(params) {
+            $scope.getData();
+            $http.get('/madeit/artifacts', params ? {params: params} : {}).then(function (response) {
+                $scope.artifacts = response.data;
+                _.each($scope.artifacts, function(artifact) {
+                    artifact.image = '';
+                    $scope.getImage(artifact.imageName, function(result) {
+                        artifact.image = result;
+                    });
+                });
+                console.log('loadArtifacts', resourceName, response, $scope[resourceName]);
+            }, function (err) {
+                console.log('loadArtifacts err', resourceName, err);
+            });
+        };
+
         $scope.init = function () {
+            resetArtifact();
             $scope.ddValue = '';
             // load users from db
             $scope.getData('users');
-            $scope.getData('artifacts');
+            loadArtifacts();
         };
         $scope.init();
     }])

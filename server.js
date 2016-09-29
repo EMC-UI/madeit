@@ -78,6 +78,7 @@ app.put('/madeit/artifacts', function (req, res) {
 
 app.post('/madeit/artifacts', function (req, res) {
     var artifact = req.body;
+    delete artifact.image;
     dataAccess.addArtifact(artifact).then(function(result) {
         console.log('http post addArtifact db result', result);
         res.status(200).json(result);

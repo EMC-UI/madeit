@@ -21,8 +21,10 @@ var getFileFromMongo = function (fileName, callback) {
     mongodb.MongoClient.connect(defaultDBConnection, function (err, db) {
         var gfs = Grid(db, mongodb);
         gfs.readFile({filename: fileName}, function (err, data) {
-            // console.log('read file %s: %s', fileName, data.toString());
-            callback(data.toString('base64'));
+            console.log('read file %s: %s', fileName);
+            if (data) {
+                callback(data.toString('base64'));
+            }
         });
     });
 };
